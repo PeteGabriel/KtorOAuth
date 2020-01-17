@@ -9,6 +9,7 @@ import io.ktor.html.*
 import kotlinx.html.*
 import io.ktor.client.*
 import io.ktor.client.engine.apache.*
+import io.ktor.features.toLogString
 
 fun main(args: Array<String>): Unit = io.ktor.server.netty.EngineMain.main(args)
 
@@ -20,6 +21,7 @@ fun Application.module(testing: Boolean = false) {
 
     routing {
         get("/") {
+            log.info(call.request.toLogString())
             call.respondText("HELLO WORLD!", contentType = ContentType.Application.Json)
         }
     }
